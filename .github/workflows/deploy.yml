@@ -21,5 +21,7 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         port: 22
         source: "./"
-        target: ${{ secrets.TARGET_DIR }}
+        target: "/home/ubuntu/app"
+        strip_components: 0
+        rm: false
 
