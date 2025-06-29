@@ -28,7 +28,7 @@ jobs:
     - name: Move files to /var/www/html
       uses: appleboy/ssh-action@v1.0.0
       with:
-        host: ${{ secrets.HOST }}
+        host: ${{ secrets.EC2_HOST }}
         key: ${{ secrets.EC2_KEY }}
         script: |
           sudo rm -rf /var/www/html/*
