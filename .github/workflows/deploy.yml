@@ -21,7 +21,17 @@ jobs:
         key: ${{ secrets.EC2_KEY }}
         port: 22
         source: "./"
-        target: "/var/www/html"
+        target: "/home/ubuntu/app"
         strip_components: 0
         rm: false
 
+    - name: Move files to /var/www/html
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.HOST }}
+        key: ${{ secrets.EC2_KEY }}
+        script: |
+          sudo rm -rf /var/www/html/*
+          sudo cp -r /home/ubuntu/app/* /var/www/html/
+          sudo chown -R www-data:www-data /var/www/html
+          sudo systemctl restart nginx
